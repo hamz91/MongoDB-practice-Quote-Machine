@@ -21390,40 +21390,6 @@ exports.default = Header;
 
 /***/ }),
 
-/***/ "./src/compnents/QuoteDetails.js":
-/*!***************************************!*\
-  !*** ./src/compnents/QuoteDetails.js ***!
-  \***************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function QuoteDetails(_ref) {
-  var quote = _ref.quote;
-
-  return _react2.default.createElement(
-    "h3",
-    null,
-    quote.movie
-  );
-}
-
-exports.default = QuoteDetails;
-
-/***/ }),
-
 /***/ "./src/compnents/QuotesDisplay.js":
 /*!****************************************!*\
   !*** ./src/compnents/QuotesDisplay.js ***!
@@ -21443,10 +21409,6 @@ var _createClass = function () { function defineProperties(target, props) { for 
 var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
 var _react2 = _interopRequireDefault(_react);
-
-var _QuoteDetails = __webpack_require__(/*! ./QuoteDetails */ "./src/compnents/QuoteDetails.js");
-
-var _QuoteDetails2 = _interopRequireDefault(_QuoteDetails);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -21492,26 +21454,31 @@ var QuotesDisplay = function (_React$Component) {
         "div",
         null,
         Object.keys(this.state.quotes).map(function (quote) {
-          console.log("movie", _this3.state.quotes[quote].inputs.movie);
-          console.log("character", _this3.state.quotes[quote].inputs.character);
-          console.log("quote", _this3.state.quotes[quote].inputs.quote);
-          _react2.default.createElement(
+          return _react2.default.createElement(
             "div",
-            null,
+            { key: _this3.state.quotes[quote] },
             _react2.default.createElement(
-              "h3",
+              "ul",
               null,
-              _this3.state.quotes[quote].inputs.movie
-            ),
-            _react2.default.createElement(
-              "h3",
-              null,
-              _this3.state.quotes[quote].inputs.character
-            ),
-            _react2.default.createElement(
-              "h3",
-              null,
-              _this3.state.quotes[quote].inputs.quote
+              _react2.default.createElement(
+                "li",
+                null,
+                "Movie : ",
+                _this3.state.quotes[quote].inputs.movie
+              ),
+              _react2.default.createElement(
+                "li",
+                null,
+                "Character : ",
+                _this3.state.quotes[quote].inputs.character
+              ),
+              _react2.default.createElement(
+                "li",
+                null,
+                "Quote : \"",
+                _this3.state.quotes[quote].inputs.quote,
+                "\""
+              )
             )
           );
         })
@@ -21630,9 +21597,12 @@ var QuotesForm = function (_React$Component) {
         _react2.default.createElement(
           "form",
           { onSubmit: this.handleSubmit, className: "form" },
-          _react2.default.createElement("input", { onChange: this.movieChange }),
-          _react2.default.createElement("input", { onChange: this.characterChange }),
-          _react2.default.createElement("input", { onChange: this.quoteChange }),
+          _react2.default.createElement("input", { placeholder: "Enter Movie Name", onChange: this.movieChange }),
+          _react2.default.createElement("input", {
+            placeholder: "Enter Character's Name",
+            onChange: this.characterChange
+          }),
+          _react2.default.createElement("input", { placeholder: "Enter Quote", onChange: this.quoteChange }),
           _react2.default.createElement(
             "button",
             null,

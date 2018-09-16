@@ -31,7 +31,7 @@ MongoClient.connect(
         .find({})
         .toArray((err, results) => {
           if (err) {
-            return comsole.log(err);
+            return console.log(err);
           }
           res.json(results);
           console.log(results);

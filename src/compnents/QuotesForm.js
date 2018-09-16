@@ -62,9 +62,12 @@ class QuotesForm extends React.Component {
     return (
       <div>
         <form onSubmit={this.handleSubmit} className="form">
-          <input onChange={this.movieChange} />
-          <input onChange={this.characterChange} />
-          <input onChange={this.quoteChange} />
+          <input placeholder="Enter Movie Name" onChange={this.movieChange} />
+          <input
+            placeholder="Enter Character's Name"
+            onChange={this.characterChange}
+          />
+          <input placeholder="Enter Quote" onChange={this.quoteChange} />
           <button>Submit</button>
         </form>
       </div>
