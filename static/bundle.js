@@ -21341,7 +21341,8 @@ var App = function (_React$Component) {
         "div",
         null,
         _react2.default.createElement(_Header2.default, null),
-        _react2.default.createElement(_QuotesForm2.default, null)
+        _react2.default.createElement(_QuotesForm2.default, null),
+        _react2.default.createElement(_QuotesDisplay2.default, null)
       );
     }
   }]);
@@ -21389,6 +21390,40 @@ exports.default = Header;
 
 /***/ }),
 
+/***/ "./src/compnents/QuoteDetails.js":
+/*!***************************************!*\
+  !*** ./src/compnents/QuoteDetails.js ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function QuoteDetails(_ref) {
+  var quote = _ref.quote;
+
+  return _react2.default.createElement(
+    "h3",
+    null,
+    quote.movie
+  );
+}
+
+exports.default = QuoteDetails;
+
+/***/ }),
+
 /***/ "./src/compnents/QuotesDisplay.js":
 /*!****************************************!*\
   !*** ./src/compnents/QuotesDisplay.js ***!
@@ -21398,6 +21433,96 @@ exports.default = Header;
 
 "use strict";
 
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _QuoteDetails = __webpack_require__(/*! ./QuoteDetails */ "./src/compnents/QuoteDetails.js");
+
+var _QuoteDetails2 = _interopRequireDefault(_QuoteDetails);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var QuotesDisplay = function (_React$Component) {
+  _inherits(QuotesDisplay, _React$Component);
+
+  function QuotesDisplay() {
+    _classCallCheck(this, QuotesDisplay);
+
+    var _this = _possibleConstructorReturn(this, (QuotesDisplay.__proto__ || Object.getPrototypeOf(QuotesDisplay)).call(this));
+
+    _this.state = {
+      quotes: {}
+    };
+    return _this;
+  }
+
+  _createClass(QuotesDisplay, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      fetch("/api/quotes").then(function (response) {
+        response.json().then(function (data) {
+          _this2.setState({
+            quotes: data
+          });
+        });
+      });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this3 = this;
+
+      return _react2.default.createElement(
+        "div",
+        null,
+        Object.keys(this.state.quotes).map(function (quote) {
+          console.log("movie", _this3.state.quotes[quote].inputs.movie);
+          console.log("character", _this3.state.quotes[quote].inputs.character);
+          console.log("quote", _this3.state.quotes[quote].inputs.quote);
+          _react2.default.createElement(
+            "div",
+            null,
+            _react2.default.createElement(
+              "h3",
+              null,
+              _this3.state.quotes[quote].inputs.movie
+            ),
+            _react2.default.createElement(
+              "h3",
+              null,
+              _this3.state.quotes[quote].inputs.character
+            ),
+            _react2.default.createElement(
+              "h3",
+              null,
+              _this3.state.quotes[quote].inputs.quote
+            )
+          );
+        })
+      );
+    }
+  }]);
+
+  return QuotesDisplay;
+}(_react2.default.Component);
+
+exports.default = QuotesDisplay;
 
 /***/ }),
 

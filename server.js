@@ -26,6 +26,18 @@ MongoClient.connect(
       });
     });
 
+    app.get("/api/quotes", (req, res) => {
+      db.collection("quotes")
+        .find({})
+        .toArray((err, results) => {
+          if (err) {
+            return comsole.log(err);
+          }
+          res.json(results);
+          console.log(results);
+        });
+    });
+
     app.get("/", (req, res) => {
       res.render("index");
     });
